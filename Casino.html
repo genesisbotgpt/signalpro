@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Predicciones 1win - Compra tu Plan</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(180deg, #081c3c, #093b78);
+      color: white;
+      text-align: center;
+    }
+    header {
+      padding: 50px 20px 20px;
+    }
+    h1 {
+      font-size: 32px;
+      margin-bottom: 20px;
+    }
+    .content {
+      max-width: 1000px;
+      margin: auto;
+      padding: 20px;
+      line-height: 1.7;
+      font-size: 18px;
+    }
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 50px 0;
+      gap: 20px;
+    }
+    .card {
+      background: #0c2a5c;
+      border-radius: 15px;
+      padding: 30px 20px;
+      width: 280px;
+      transition: transform 0.3s, background 0.3s;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    }
+    .card:hover {
+      transform: scale(1.05);
+      background: #1152aa;
+    }
+    .card h2 {
+      margin-bottom: 10px;
+      font-size: 24px;
+    }
+    .card p {
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+    .btn {
+      display: inline-block;
+      background: #00bfff;
+      color: white;
+      padding: 12px 25px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 25px;
+      text-decoration: none;
+      font-size: 16px;
+      transition: background 0.3s;
+    }
+    .btn:hover {
+      background: #0080ff;
+    }
+    .wallet-section {
+      margin-top: 30px;
+      padding: 20px;
+      background: #0c2a5c;
+      border-radius: 15px;
+      display: none;
+    }
+    .support {
+      margin: 60px 0;
+    }
+    .support a {
+      display: inline-block;
+      background: #00bfff;
+      color: white;
+      padding: 15px 30px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-size: 18px;
+      transition: background 0.3s;
+    }
+    .support a:hover {
+      background: #0080ff;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Antes de adquirir nuestros servicios, queremos que lo entiendas perfectamente</h1>
+  </header>
+
+  <div class="content">
+    <p>Hemos estado recopilando resultados de cientos y cientos de jugadas en el juego Mines del casino online 1win. A partir de estos datos, hemos entrenado una inteligencia artificial capaz de leer y entender algoritmos matemáticos complejos.</p>
+    <p>Los casinos están diseñados con algoritmos que, aunque parecen aleatorios, tienen límites técnicos. Aprovechamos esto para sincronizar un bot que predice el resultado correcto usando el reloj del sistema en tiempo real.</p>
+    <p>El bot tiene una precisión distinta según el plan que adquieras. Toda la información ha sido verificada con métodos de inteligencia artificial y estadísticas reales.</p>
+    <p><strong>Recomendamos:</strong> realizar 10 apuestas diarias como máximo, con apuestas de hasta 20 USDT para evitar bloqueos.</p>
+    <p>Con apuestas de 20 USDT, puedes obtener 50 USDT por jugada, y realizar 10 jugadas representaría hasta 500 USDT diarios.</p>
+  </div>
+
+  <div class="cards">
+    <div class="card">
+      <h2>Plan Start</h2>
+      <p>20 USDT<br>Precisión 85%</p>
+      <button class="btn" onclick="showWallet('20 USDT')">Adquirir</button>
+    </div>
+    <div class="card">
+      <h2>Plan Premium</h2>
+      <p>50 USDT<br>Precisión 90%</p>
+      <button class="btn" onclick="showWallet('50 USDT')">Adquirir</button>
+    </div>
+    <div class="card">
+      <h2>Plan Diamond</h2>
+      <p>100 USDT<br>Precisión 99.9%</p>
+      <button class="btn" onclick="showWallet('100 USDT')">Adquirir</button>
+    </div>
+  </div>
+
+  <div id="wallet" class="wallet-section">
+    <h2>Envía <span id="amount"></span> a cualquiera de estas direcciones:</h2>
+    <p><strong>TRC20 Wallet 1:</strong> TVgf1ZhK2YHx7Pd8wEYk8Kcgh8hP6Anv4G</p>
+    <p><strong>TRC20 Wallet 2:</strong> TYsdeqAqvZkS78TULbhfFvB7u8D1kWxro9</p>
+    <p><strong>TRC20 Wallet 3:</strong> TQw89dKP1erF2jzMKyCFU38Cjd1n8sewK9</p>
+    <p style="margin-top:20px; font-size:16px;">Después de realizar el pago, dirígete al soporte de Telegram para validar tu acceso:</p>
+    <a href="https://t.me/+XOXFW6a9z7Q0ZGY5" class="btn" target="_blank">Soporte Telegram</a>
+  </div>
+
+  <div class="support">
+    <a href="https://t.me/+XOXFW6a9z7Q0ZGY5" target="_blank">¿Necesitas ayuda? Contacta nuestro soporte</a>
+  </div>
+
+  <script>
+    function showWallet(amount) {
+      document.getElementById('amount').innerText = amount;
+      document.getElementById('wallet').style.display = 'block';
+      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+    }
+  </script>
+
+</body>
+</html>
