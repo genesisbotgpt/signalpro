@@ -3,176 +3,499 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Predicciones 1win - Compra tu Plan</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <title>Predicciones de Mines 1Win</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    body {
+    * {
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
       font-family: 'Montserrat', sans-serif;
-      background: linear-gradient(180deg, #081c3c, #093b78);
-      color: white;
-      text-align: center;
-    }
-    header {
-      padding: 50px 20px 20px;
-    }
-    h1 {
-      font-size: 36px;
-      margin-bottom: 20px;
+      background-color: #1a1a1a;
+      color: #fff;
+      line-height: 1.6;
       padding: 20px;
-      background: linear-gradient(135deg, #00bfff, #1152aa);
-      color: white;
-      border-radius: 10px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-      text-transform: uppercase;
+    }
+
+    h1, h2, h3 {
+      text-align: center;
+      color: #00bfff;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+    }
+
+    h3 {
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+    }
+
+    section {
+      padding: 40px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .explanation-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 2px solid #00bfff;
+      background-color: #222;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0, 191, 255, 0.3);
+    }
+
+    .explanation-container p {
+      text-align: justify;
+      font-size: 1rem;
+      color: #ccc;
+      margin-bottom: 10px;
+    }
+
+    .explanation-container p strong {
+      color: #00bfff;
+      font-size: 1.2rem;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 12px 24px;
+      background-color: #00bfff;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 25px;
       font-weight: bold;
-      letter-spacing: 2px;
+      transition: background-color 0.3s ease;
+      cursor: pointer;
     }
-    .content {
-      max-width: 1000px;
-      margin: auto;
-      padding: 30px;
-      line-height: 1.7;
-      font-size: 18px;
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 20px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-      backdrop-filter: blur(8px);
-      margin-bottom: 30px;
-      transition: transform 0.3s ease;
+
+    .button:hover {
+      background-color: #0088cc;
     }
-    .content:hover {
-      transform: scale(1.02);
-      box-shadow: 0 12px 30px rgba(0,0,0,0.5);
-    }
-    .content p {
-      margin-bottom: 25px;
-      font-size: 18px;
-      color: #e6e6e6;
-    }
-    .cards {
+
+    /* Demostración */
+    .demo-container {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      margin: 50px 0;
       gap: 20px;
     }
-    .card {
-      background: #0c2a5c;
-      border-radius: 15px;
-      padding: 30px 20px;
-      width: 280px;
-      transition: transform 0.3s, background 0.3s;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-    }
-    .card:hover {
-      transform: scale(1.05);
-      background: #1152aa;
-    }
-    .card h2 {
-      margin-bottom: 10px;
-      font-size: 24px;
-    }
-    .card p {
-      font-size: 18px;
-      margin-bottom: 20px;
-    }
-    .btn {
-      display: inline-block;
-      background: #00bfff;
-      color: white;
-      padding: 12px 25px;
-      margin-top: 10px;
-      border: none;
-      border-radius: 25px;
-      text-decoration: none;
-      font-size: 16px;
-      transition: background 0.3s;
-    }
-    .btn:hover {
-      background: #0080ff;
-    }
-    .wallet-section {
-      margin-top: 30px;
+
+    .board {
+      background-color: #333; /* Fondo gris oscuro como en 1Win */
       padding: 20px;
-      background: #0c2a5c;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      width: 100%;
+      max-width: 300px;
+    }
+
+    .board-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 50px);
+      gap: 5px;
+      margin: 0 auto;
+      justify-content: center;
+    }
+
+    .cell {
+      width: 50px;
+      height: 50px;
+      background-color: #4a4a4a; /* Gris oscuro para celdas cerradas, como en 1Win */
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .cell.safe {
+      background-color: #87ceeb; /* Azul claro para celdas seguras, como diamantes en 1Win */
+      color: #fff;
+    }
+
+    .cell.mine {
+      background-color: #ff4040; /* Rojo para minas, como en 1Win */
+      color: #fff;
+    }
+
+    .message {
+      margin-top: 15px;
+      font-size: 1.1rem;
+      color: #00bfff;
+    }
+
+    /* Planes */
+    .plans-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .plan-card {
+      background-color: #333;
+      padding: 30px;
       border-radius: 15px;
+      box-shadow: 0 6px 12px rgba(0, 191, 255, 0.3);
+      text-align: center;
+      width: 100%;
+      max-width: 350px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .plan-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0, 191, 255, 0.5);
+    }
+
+    .plan-card h4 {
+      font-size: 1.6rem;
+      color: #00bfff;
+      margin-bottom: 15px;
+    }
+
+    .plan-card p {
+      margin-bottom: 20px;
+      font-size: 1.1rem;
+    }
+
+    /* Modal para Métodos de Pago */
+    .modal {
       display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
     }
-    .support {
-      margin: 60px 0;
+
+    .modal-content {
+      background-color: #333;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 600px;
+      width: 90%;
+      max-height: 80vh;
+      overflow-y: auto;
+      position: relative;
     }
-    .support a {
-      display: inline-block;
-      background: #00bfff;
-      color: white;
-      padding: 15px 30px;
-      border-radius: 30px;
-      text-decoration: none;
-      font-size: 18px;
-      transition: background 0.3s;
+
+    .close-button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #00bfff;
     }
-    .support a:hover {
-      background: #0080ff;
+
+    .wallet-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .wallet-card {
+      background-color: #444;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      width: 100%;
+      max-width: 250px;
+    }
+
+    .wallet-card p {
+      word-break: break-all;
+      margin-bottom: 15px;
+      font-size: 0.9rem;
+    }
+
+    /* Telegram Button */
+    .telegram-section {
+      text-align: center;
+    }
+
+    .telegram-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.2rem;
+    }
+
+    .telegram-button img {
+      width: 24px;
+      height: 24px;
+    }
+
+    /* Responsividad */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      h2 {
+        font-size: 1.2rem;
+      }
+
+      h3 {
+        font-size: 1.5rem;
+      }
+
+      .demo-container, .plans-container, .wallet-container {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .board, .plan-card, .wallet-card {
+        max-width: 100%;
+      }
+
+      .board-grid {
+        grid-template-columns: repeat(5, 1fr);
+        gap: 3px;
+      }
+
+      .cell {
+        width: 100%;
+        height: 50px;
+      }
+
+      .plan-card {
+        padding: 20px;
+      }
+
+      .explanation-container {
+        padding: 15px;
+      }
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>NUESTRO SERVICIO</h1>
-  </header>
+  <!-- Título y Subtítulo -->
+  <section>
+    <h1>Predicciones de Mines 1Win</h1>
+    <h2>Gana en Mines 1Win gracias a nuestras predicciones 100% precisas</h2>
+  </section>
 
-  <div class="content">
-    <p>Hemos estado recopilando resultados de cientos y cientos de jugadas en el juego <strong>Mines</strong> del casino online <strong>1win</strong>. A partir de estos datos, hemos entrenado una inteligencia artificial capaz de leer y entender algoritmos matemáticos complejos.</p>
-    
-    <p>Los casinos están diseñados con algoritmos que, aunque parecen aleatorios, tienen límites técnicos. Aprovechamos esto para sincronizar un bot que predice el resultado correcto usando el reloj del sistema en tiempo real.</p>
-    
-    <p>El bot tiene una precisión distinta según el plan que adquieras. Toda la información ha sido verificada con métodos de inteligencia artificial y estadísticas reales.</p>
-    
-    <p><strong>Recomendamos:</strong> realizar 10 apuestas diarias como máximo, con apuestas de hasta 20 USDT para evitar bloqueos.</p>
-    
-    <p>Con apuestas de 20 USDT, puedes obtener 50 USDT por jugada, y realizar 10 jugadas representaría hasta 500 USDT diarios.</p>
-  </div>
-
-  <div class="cards">
-    <div class="card">
-      <h2>Plan Start</h2>
-      <p>20 USDT<br>Precisión 85%</p>
-      <button class="btn" onclick="showWallet('20 USDT')">Adquirir</button>
+  <!-- Explicación del Servicio -->
+  <section>
+    <div class="explanation-container">
+      <p><strong>Antes de adquirir nuestros servicios, queremos que lo entiendas perfectamente</strong></p>
+      <p>Hemos estado recopilando resultados de cientos y cientos de jugadas en el juego Mines del casino online 1win. A partir de estos datos, hemos entrenado una inteligencia artificial capaz de leer y entender algoritmos matemáticos complejos.</p>
+      <p>Los casinos en línea están diseñados con algoritmos que generan resultados aleatorios en cada jugada. Esto se hace para reducir las posibilidades de ganar del jugador y, como es de esperarse, aumentar las probabilidades de ganar del casino. Sin embargo, existe un problema técnico en esta configuración.</p>
+      <p><strong>¿Qué es lo que hemos descubierto?</strong></p>
+      <p>La programación detrás de estos algoritmos, aunque aparentemente infinita, está limitada por un número finito de casillas y combinaciones posibles en el juego. Esto hace que, aunque los resultados sean aleatorios, haya un patrón que se puede predecir.</p>
+      <p>Nuestro equipo analizó estos patrones de manera exhaustiva y pudo recrear un algoritmo similar al que utiliza el casino. Solo fue necesario enlazarlo con el sistema del casino de forma anónima y sincronizarlo con el reloj actual para garantizar que nuestras predicciones se alinearan con las jugadas reales.</p>
+      <p><strong>¿Cómo Funciona Nuestro Bot?</strong></p>
+      <p>Nuestro bot de predicción determina la hora exacta del sistema en el momento que usted solicita la jugada y genera el resultado que el casino va a producir en ese instante, con una precisión matemática garantizada.</p>
+      <p>La efectividad del bot varía según el plan elegido:</p>
+      <p>Plan Start (20 USDT): Con una precisión del 85%, significa que de cada 100 jugadas que realice, 85 serán acertadas.</p>
+      <p>Plan Premium (50 USDT): Con una precisión del 90%, lo que incrementa significativamente las probabilidades de ganar.</p>
+      <p>Plan Diamond (100 USDT): Con una precisión del 99.9%, este es el plan más avanzado y garantiza el mayor porcentaje de éxito en sus jugadas.</p>
+      <p><strong>Pruebas y Resultados Reales</strong></p>
+      <p>Llevamos meses probando y recopilando datos de las jugadas con nuestros algoritmos y todos los resultados han sido verificados mediante algoritmos de inteligencia artificial para asegurarnos de que los datos sean estadísticamente correctos. Los resultados han sido consistentes y confirmados a lo largo de varias pruebas.</p>
+      <p><strong>Recomendaciones Importantes</strong></p>
+      <p>Juegue de forma moderada: Recomendamos realizar no más de 10 apuestas por día para evitar que el casino detecte actividad sospechosa y bloquee su cuenta.</p>
+      <p>Limite sus apuestas: No debe apostar más de 20 USDT por jugada. Este es un consejo importante para mantener su cuenta segura y no llamar la atención.</p>
+      <p>Ganancias esperadas: Con nuestro bot, usted puede esperar un 250% de ganancia en cada jugada. Por ejemplo, si apuesta 20 USDT, podría ganar 50 USDT. Con 10 apuestas diarias, esto representa un potencial de ganancia de 500 USDT diarios.</p>
+      <p><strong>Resumen de los Planes:</strong></p>
+      <p>Plan Start - 20 USDT: Precisión del 85% | 85 aciertos de 100 jugadas.</p>
+      <p>Plan Premium - 50 USDT: Precisión del 90% | 90 aciertos de 100 jugadas.</p>
+      <p>Plan Diamond - 100 USDT: Precisión del 99.9% | 99.9 aciertos de 100 jugadas.</p>
+      <p><strong>¿Está listo para comenzar?</strong></p>
+      <p>Adquiera el plan que mejor se ajuste a sus necesidades y empiece a ganar con nuestro sistema de predicción confiable. Simplemente haga clic en el siguiente botón para elegir su plan y comenzar el proceso de pago.</p>
     </div>
-    <div class="card">
-      <h2>Plan Premium</h2>
-      <p>50 USDT<br>Precisión 90%</p>
-      <button class="btn" onclick="showWallet('50 USDT')">Adquirir</button>
+  </section>
+
+  <!-- Demostración -->
+  <section id="Demostracion">
+    <h3>Demostración de Precisión del Bot</h3>
+    <h2>Así predice nuestro sistema las casillas seguras</h2>
+    <div class="demo-container">
+      <!-- Tablero Real -->
+      <div class="board">
+        <h4>Tablero Real</h4>
+        <div id="realBoard" class="board-grid"></div>
+        <p id="realMessage" class="message"></p>
+      </div>
+      <!-- Tablero de Predicción -->
+      <div class="board">
+        <h4>Tablero de Predicción</h4>
+        <div id="predictionBoard" class="board-grid"></div>
+      </div>
     </div>
-    <div class="card">
-      <h2>Plan Diamond</h2>
-      <p>100 USDT<br>Precisión 99.9%</p>
-      <button class="btn" onclick="showWallet('100 USDT')">Adquirir</button>
+  </section>
+
+  <!-- Planes -->
+  <section>
+    <h3>Elige Tu Plan</h3>
+    <div class="plans-container">
+      <div class="plan-card">
+        <h4>Plan Start</h4>
+        <p>Predicciones para partidas casuales.</p>
+        <p>Precisión: 85% durante 10 días</p>
+        <p>Precio: $20</p>
+        <button class="button" onclick="openModal(20)">Comprar Ahora</button>
+      </div>
+      <div class="plan-card">
+        <h4>Plan Premium</h4>
+        <p>Predicciones mejoradas + acceso a estrategias avanzadas.</p>
+        <p>Precisión: 90% durante 14 días</p>
+        <p>Precio: $50</p>
+        <button class="button" onclick="openModal(50)">Comprar Ahora</button>
+      </div>
+      <div class="plan-card">
+        <h4>Plan Diamond</h4>
+        <p>Acceso total a predicciones exclusivas + asesoría personalizada.</p>
+        <p>Precisión: 99.9% durante 30 días</p>
+        <p>Precio: $100</p>
+        <button class="button" onclick="openModal(100)">Comprar Ahora</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal de Métodos de Pago -->
+  <div id="paymentModal" class="modal">
+    <div class="modal-content">
+      <span class="close-button" onclick="closeModal()">×</span>
+      <h3>Métodos de Pago</h3>
+      <p id="paymentAmount" style="margin-bottom: 20px; font-size: 1.1rem;">Envíe <span id="amount">20</span> USD a una de las siguientes direcciones:</p>
+      <div class="wallet-container">
+        <div class="wallet-card">
+          <h4>USDT (TRC20)</h4>
+          <p id="usdtAddress">TEB97xYedvVaFn2dFJV3wqcCNxYJkfBx1W</p>
+          <button class="button" onclick="copyToClipboard('usdtAddress')">Copiar Dirección</button>
+        </div>
+        <div class="wallet-card">
+          <h4>TRX</h4>
+          <p id="trxAddress">TEB97xYedvVaFn2dFJV3wqcCNxYJkfBx1W</p>
+          <button class="button" onclick="copyToClipboard('trxAddress')">Copiar Dirección</button>
+        </div>
+        <div class="wallet-card">
+          <h4>BTC</h4>
+          <p id="btcAddress">bc1q6rs4zrtuggnmcvd8wp3dvvypw50tyeq8hpynf0</p>
+          <button class="button" onclick="copyToClipboard('btcAddress')">Copiar Dirección</button>
+        </div>
+        <div class="wallet-card">
+          <h4>ETH</h4>
+          <p id="ethAddress">0x49dD8a36FB7b070D127B5c457e50a9Ff12EaBE0E</p>
+          <button class="button" onclick="copyToClipboard('ethAddress')">Copiar Dirección</button>
+        </div>
+        <div class="wallet-card">
+          <h4>BNB (BEP20)</h4>
+          <p id="bnbAddress">0x49dD8a36FB7b070D127B5c457e50a9Ff12EaBE0E</p>
+          <button class="button" onclick="copyToClipboard('bnbAddress')">Copiar Dirección</button>
+        </div>
+      </div>
+      <p style="margin-top: 20px;">Para confirmar tu pago, contacta con nuestro soporte:</p>
+      <a href="https://t.me/+XOXFW6a9z7Q0ZGY5" target="_blank" class="button">Soporte en Telegram</a>
     </div>
   </div>
 
-  <div id="wallet" class="wallet-section">
-    <h2>Envía <span id="amount"></span> a cualquiera de estas direcciones:</h2>
-    <p><strong>TRC20 Wallet 1:</strong> TVgf1ZhK2YHx7Pd8wEYk8Kcgh8hP6Anv4G</p>
-    <p><strong>TRC20 Wallet 2:</strong> TYsdeqAqvZkS78TULbhfFvB7u8D1kWxro9</p>
-    <p><strong>TRC20 Wallet 3:</strong> TQw89dKP1erF2jzMKyCFU38Cjd1n8sewK9</p>
-    <p style="margin-top:20px; font-size:16px;">Después de realizar el pago, dirígete al soporte de Telegram para validar tu acceso:</p>
-    <a href="https://t.me/+XOXFW6a9z7Q0ZGY5" class="btn" target="_blank">Soporte Telegram</a>
-  </div>
-
-  <div class="support">
-    <a href="https://t.me/+XOXFW6a9z7Q0ZGY5" target="_blank">¿Necesitas ayuda? Contacta nuestro soporte</a>
-  </div>
+  <!-- Soporte en Telegram -->
+  <section class="telegram-section">
+    <a href="https://t.me/+XOXFW6a9z7Q0ZGY5" target="_blank" class="button telegram-button">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram">
+      Soporte en Telegram
+    </a>
+  </section>
 
   <script>
-    function showWallet(amount) {
-      document.getElementById('amount').innerText = amount;
-      document.getElementById('wallet').style.display = 'block';
-      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+    // Función para copiar al portapapeles
+    function copyToClipboard(elementId) {
+      const text = document.getElementById(elementId).textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        alert('¡Copiado al portapapeles!');
+      }).catch(err => {
+        console.error('Error al copiar: ', err);
+      });
+    }
+
+    // Funciones para el modal
+    function openModal(amount) {
+      document.getElementById('paymentModal').style.display = 'flex';
+      document.getElementById('amount').textContent = amount;
+    }
+
+    function closeModal() {
+      document.getElementById('paymentModal').style.display = 'none';
+    }
+
+    // Cerrar modal al hacer clic fuera
+    window.onclick = function(event) {
+      const modal = document.getElementById('paymentModal');
+      if (event.target === modal) {
+        modal.style.display = 'none';
+      }
+    }
+
+    // Lógica del tablero (5x5 con 5 minas predefinidas para demostración)
+    const realBoard = document.getElementById('realBoard');
+    const predictionBoard = document.getElementById('predictionBoard');
+    const realMessage = document.getElementById('realMessage');
+
+    // Configuración del tablero (25 celdas, 5 minas)
+    const boardSize = 25;
+    const mineCount = 5;
+    const mines = [3, 8, 12, 17, 22]; // Posiciones fijas para demostración
+    const safeCells = Array.from({ length: boardSize }, (_, i) => i).filter(i => !mines.includes(i));
+    let clickedSafeCells = 0;
+
+    // Crear tablero real
+    for (let i = 0; i < boardSize; i++) {
+      const cell = document.createElement('div');
+      cell.classList.add('cell');
+      cell.addEventListener('click', () => {
+        if (cell.classList.contains('clicked')) return;
+        cell.classList.add('clicked');
+        if (mines.includes(i)) {
+          cell.classList.add('mine');
+          realMessage.textContent = 'Perdiste tocando una mina';
+          realBoard.querySelectorAll('.cell').forEach(c => c.style.pointerEvents = 'none');
+        } else {
+          cell.classList.add('safe');
+          clickedSafeCells++;
+          if (clickedSafeCells === boardSize - mineCount) {
+            realMessage.textContent = '¡Ganaste evitando todas las minas!';
+            realBoard.querySelectorAll('.cell').forEach(c => c.style.pointerEvents = 'none');
+          }
+        }
+      });
+      realBoard.appendChild(cell);
+    }
+
+    // Crear tablero de predicción
+    for (let i = 0; i < boardSize; i++) {
+      const cell = document.createElement('div');
+      cell.classList.add('cell');
+      if (!mines.includes(i)) {
+        cell.classList.add('safe');
+      } else {
+        cell.classList.add('mine'); // Mostrar minas en rojo en el tablero de predicción
+      }
+      predictionBoard.appendChild(cell);
     }
   </script>
-
 </body>
 </html>
